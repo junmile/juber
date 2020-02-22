@@ -1,2 +1,3 @@
 # juber
-Nomad uber clone coding
+Server for the (J)Uber Clone Course on Nomad Academy. GraphQL, Typescript, NodeJS
+
