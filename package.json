@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Server for the (J)Uber Clone Course on Nomad Academy. GraphQL, Typescript, NodeJS",
   "main": "index.js",
-<<<<<<< HEAD
   "author": "",
   "license": "MIT",
   "devDependencies": {
@@ -25,21 +24,4 @@
     "helmet": "^3.21.2",
     "morgan": "^1.9.1"
   }
-=======
-  "dependencies": {},
-  "devDependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/junmile/juber.git"
-  },
-  "author": "junmile <designeryjun@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/junmile/juber/issues"
-  },
-  "homepage": "https://github.com/junmile/juber#readme",
-                      "scripts": {
-                        "dev": "cd src && nodemon --exec ts-node index.ts"
-                      }
->>>>>>> 1fd72955676a7fce86b46b1d7e1435419048daf8
 }
