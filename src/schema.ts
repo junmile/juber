@@ -18,6 +18,5 @@ const schema = makeExecutableSchema({
   typeDefs: mergedTypes,
   resolvers: mergedResolvers
 });
-console.log(schema);
 
 export default schema;
