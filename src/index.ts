@@ -8,7 +8,6 @@ import connectionOptions from './ormConfig';
 const PORT: number | string = process.env.PORT || 4000;
 const PLAYGROUND_ENDPOINT: string = '/playground';
 const GRAPHQL_ENDPOINT: string = '/graphql';
-console.log(process.env);
 const appOptions: Options = {
   port: PORT,
   playground: PLAYGROUND_ENDPOINT,
