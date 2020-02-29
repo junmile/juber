@@ -10,6 +10,7 @@ import {
   BeforeInsert,
   BeforeUpdate
 } from 'typeorm';
+import { stringify } from 'querystring';
 
 const BCRYPT_ROUNDS = 10;
 
@@ -70,6 +71,11 @@ class User extends BaseEntity {
   get fullName(): string {
     return `${this.firstName} ${this.lastName}`;
   }
+
+  public comparePassword(password: string): Promise<boolean> {
+    return bcrypt.compare(password, this.password);
+  }
+
   @BeforeInsert()
   @BeforeUpdate()
   async savePassword(): Promise<void> {
