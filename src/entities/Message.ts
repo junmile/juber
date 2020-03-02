@@ -9,10 +9,14 @@ import {
 } from 'typeorm';
 
 import Chat from './Chat';
+import User from './User';
 
 @Entity()
-class Mesaage extends BaseEntity {
+class Message extends BaseEntity {
   @PrimaryGeneratedColumn() id: number;
+
+  @Column({ type: 'text' })
+  text: string;
 
   @ManyToOne(
     (type) => Chat,
@@ -20,9 +24,15 @@ class Mesaage extends BaseEntity {
   )
   chat: Chat;
 
+  @ManyToOne(
+    (type) => Message,
+    (message) => message.user
+  )
+  user: User;
+
   @CreateDateColumn() createdAt: string;
 
   @UpdateDateColumn() updatedAt: string;
 }
 
-export default Mesaage;
+export default Message;
