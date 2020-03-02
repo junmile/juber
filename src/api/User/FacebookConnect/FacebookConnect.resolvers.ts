@@ -18,7 +18,7 @@ const resolvers: Resolvers = {
           return {
             ok: true,
             error: null,
-            token: 'Coming soon'
+            token: 'Coming soon, already'
           };
         }
       } catch (error) {
