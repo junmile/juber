@@ -1,9 +1,105 @@
-type Query {
-  sayBye: String!
-  sayHello(name: String!): SayHelloResponse!
+type Message {
+  id: Int!
+  text: String!
+  chat: Chat!
+  user: User!
+  createdAt: String!
+  updatedAt: String
 }
 
-type SayHelloResponse {
-  text: String!
-  error: Boolean!
+type Chat {
+  id: Int!
+  messages: [Message]!
+  participants: [User]!
+  createdAt: String!
+  updatedAt: String
+}
+
+type Place {
+  id: Int!
+  name: String!
+  lat: Float!
+  lng: Float!
+  address: String!
+  isFav: Boolean!
+  createdAt: String!
+  updatedAt: String
+}
+
+type Ride {
+  id: Int!
+  status: String!
+  pickUpAddress: String!
+  pickUpLat: Float!
+  pickUpLng: Float!
+  dropOFFAddress: String!
+  dropOffLat: Float!
+  dropOOffLng: Float!
+  price: Float!
+  distance: String!
+  duration: String!
+  driver: User!
+  passenger: User!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type FacebookConnectResponse {
+  ok: Boolean!
+  error: String
+  token: String
+}
+
+type Mutation {
+  FacebookConnect(
+    firstName: String!
+    lastName: String!
+    email: String
+    fbId: String!
+  ): FacebookConnectResponse!
+}
+
+type User {
+  id: Int!
+  email: String
+  verifiedEmail: Boolean!
+  firstName: String!
+  lastName: String!
+  age: Int
+  password: String!
+  phoneNumber: String
+  verifiedPhoneNumber: Boolean!
+  profilePhoto: String
+  createdAt: String!
+  updatedAt: String
+  fullName: String
+  isDriving: Boolean!
+  isRiding: Boolean!
+  isTaken: Boolean!
+  lastLng: Float!
+  lastLat: Float!
+  lastOrientation: Float
+  fbId: String
+  chat: Chat
+  messages: [Message]
+  verifications: [Verification]
+  rideAsPassenger: [Ride]
+  rideAsDriver: [Ride]
+  createdAt: String!
+  updatedAt: String
+}
+
+type Query {
+  user: User
+}
+
+type Verification {
+  id: int!
+  target: String!
+  payload: String!
+  key: String!
+  used: Boolean!
+  user: User!
+  createdAt: String!
+  updatedAt: String
 }

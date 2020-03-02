@@ -1,5 +1,5 @@
 type Verification {
-  id: int!
+  id: Int!
   target: String!
   payload: String!
   key: String!

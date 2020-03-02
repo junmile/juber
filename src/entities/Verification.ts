@@ -6,7 +6,6 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   BeforeInsert,
-  ManyToMany,
   ManyToOne
 } from 'typeorm';
 import { verificationTarget } from 'src/types/types';
