@@ -5,11 +5,9 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  BeforeInsert,
-  ManyToOne
+  BeforeInsert
 } from 'typeorm';
 import { verificationTarget } from 'src/types/types';
-import User from './User';
 
 const PHONE = 'PHONE';
 const EMAIL = 'EMAIL';

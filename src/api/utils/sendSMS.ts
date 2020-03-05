@@ -11,4 +11,4 @@ export const sendSMS = (to: string, body: string) => {
 };
 
 export const sendVerificationSMS = (to: string, key: string) =>
-  sendSMS(to, `Your verification key is : ${key}`);
+  sendSMS(to, `Juber 인증번호 : ${key} 를 입력해 주세요`);
