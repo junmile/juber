@@ -11,7 +11,7 @@ const resolvers: Resolvers = {
     ): Promise<EmailSignUpResponse> => {
       const { email } = args;
       try {
-        const exitingUser = await User.findOne(email);
+        const exitingUser = await User.findOne({ email });
         if (exitingUser) {
           return {
             ok: false,
