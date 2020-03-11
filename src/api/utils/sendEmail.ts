@@ -17,6 +17,6 @@ const sendEmail = (subject: string, html: string) => {
 
 export const sendVerificationEmail = (fullName: string, key: string) => {
   const emailSubject = `Hello! ${fullName}, please verify your email`;
-  const emailBody = `Verify your email by clicking <a href="https://hidden-beyond-22858.herokuapp.com/">here</a>`;
+  const emailBody = `Verify your email by clicking <a href="https://hidden-beyond-22858.herokuapp.com/${key}">here</a>`;
   return sendEmail(emailSubject, emailBody);
 };
