@@ -1,9 +1,9 @@
-import { Resolvers } from 'src/types/resolvers';
+import { Resolvers } from '../../../types/resolvers';
 import { EmailSignUpMutationArgs, EmailSignUpResponse } from 'src/types/graph';
 import User from '../../../entities/User';
 import createJWT from '../../../api/utils/createJWT';
-import Verification from 'src/entities/Verification';
-import { sendVerificationEmail } from 'src/api/utils/sendEmail';
+import Verification from '../../../entities/Verification';
+import { sendVerificationEmail } from '../../../api/utils/sendEmail';
 
 const resolvers: Resolvers = {
   Mutation: {
@@ -32,6 +32,7 @@ const resolvers: Resolvers = {
                 payload: newUser.email,
                 target: 'EMAIL'
               }).save();
+
               await sendVerificationEmail(
                 newUser.fullName,
                 emailVerification.key
