@@ -102,7 +102,7 @@ class User extends BaseEntity {
   @UpdateDateColumn() updatedAt: string;
 
   get fullName(): string {
-    return `${this.firstName} ${this.lastName}`;
+    return `${this.lastName} ${this.firstName}`;
   }
 
   public comparePassword(password: string): Promise<boolean> {
