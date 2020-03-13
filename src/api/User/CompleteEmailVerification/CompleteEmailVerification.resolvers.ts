@@ -1,11 +1,11 @@
 import { Resolvers } from 'src/types/resolvers';
-import privateResolver from 'src/api/utils/privateResolver';
+import privateResolver from '../../../api/utils/privateResolver';
 import {
   CompleteEmailVerificationMutationArgs,
   CompleteEmailVerificationResponse
 } from 'src/types/graph';
 import User from 'src/entities/User';
-import Verification from 'src/entities/Verification';
+import Verification from '../../../entities/Verification';
 
 const resolvers: Resolvers = {
   Mutation: {
@@ -16,7 +16,8 @@ const resolvers: Resolvers = {
         { req }
       ): Promise<CompleteEmailVerificationResponse> => {
         const user: User = req.user;
-        const { key } = req;
+        const { key } = args;
+
         if (user.email) {
           try {
             const verification = await Verification.findOne({
@@ -26,6 +27,8 @@ const resolvers: Resolvers = {
             if (verification) {
               user.verifiedEmail = true;
               user.save();
+              verification.verified = true;
+              verification.save();
               return {
                 ok: true,
                 error: null
