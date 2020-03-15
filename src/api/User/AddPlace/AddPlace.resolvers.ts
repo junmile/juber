@@ -1,24 +1,20 @@
 import { Resolvers } from 'src/types/resolvers';
 import privateResolver from '../../../api/utils/privateResolver';
-import {
-  ReportMovementMutationArgs,
-  ReportMovementResponse
-} from '../../../types/graph';
+import { AddPlaceMutationArgs, AddPlaceResponse } from '../../../types/graph';
 import User from '../../../entities/User';
-import cleanNullArgs from '../../../api/utils/cleanNullArgs';
+import Place from '../../../entities/Place';
 
 const resolvers: Resolvers = {
   Mutation: {
-    ReportMovement: privateResolver(
+    AddPlace: privateResolver(
       async (
         _,
-        args: ReportMovementMutationArgs,
+        args: AddPlaceMutationArgs,
         { req }
-      ): Promise<ReportMovementResponse> => {
+      ): Promise<AddPlaceResponse> => {
         const user: User = req.user;
-        const notNull = cleanNullArgs(args);
         try {
-          await User.update({ id: user.id }, { ...notNull });
+          await Place.create({ ...args, user }).save();
           return {
             ok: true,
             error: null

@@ -5,7 +5,7 @@ import {
   UpdateMyProfileMutationArgs
 } from 'src/types/graph';
 import User from '../../../entities/User';
-import cleanNullArgs from 'src/api/utils/cleanNullArgs';
+import cleanNullArgs from '../../../api/utils/cleanNullArgs';
 
 const resolvers: Resolvers = {
   Mutation: {
