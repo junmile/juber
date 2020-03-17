@@ -1,5 +1,5 @@
 import { Resolvers } from 'src/types/resolvers';
-import privateResolver from '../../../api/utils/privateResolver';
+import privateResolver from '../../utils/privateResolver';
 import { AddPlaceMutationArgs, AddPlaceResponse } from '../../../types/graph';
 import User from '../../../entities/User';
 import Place from '../../../entities/Place';
