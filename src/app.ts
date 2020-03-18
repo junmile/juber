@@ -15,9 +15,9 @@ class App {
     this.pubSub.ee.setMaxListeners(99);
     this.app = new GraphQLServer({
       schema,
-      context: (req: ContextParameters) => {
+      context: (info: ContextParameters) => {
         return {
-          req: req.request,
+          req: info.request,
           pubSub: this.pubSub
         };
       }
