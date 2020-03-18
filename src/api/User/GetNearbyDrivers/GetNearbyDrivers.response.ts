@@ -2,6 +2,7 @@ import { Resolvers } from '../../../types/resolvers';
 import privateResolver from '../../utils/privateResolver';
 import User from '../../../entities/User';
 import { Between } from 'typeorm';
+import { GetNearbyDriversResponse } from '../../../types/graph';
 
 const resolvers: Resolvers = {
   Query: {
@@ -9,11 +10,24 @@ const resolvers: Resolvers = {
       async (_, __, { req }): Promise<GetNearbyDriversResponse> => {
         const user: User = req.user;
         const { lastLat, lastLng } = user;
-        const drivers = await User.find({
-          isDriving: true,
-          lastLat: Between(lastLat - 0.05, lastLng + 0.05),
-          lastLng: Between(lastLng - 0.05, lastLng + 0.05)
-        });
+        try {
+          const drivers: User[] | any = await User.find({
+            isDriving: true,
+            lastLat: Between(lastLat - 0.05, lastLng + 0.05),
+            lastLng: Between(lastLng - 0.05, lastLng + 0.05)
+          });
+          return {
+            ok: true,
+            error: null,
+            drivers
+          };
+        } catch (error) {
+          return {
+            ok: false,
+            error: error.message,
+            drivers: null
+          };
+        }
       }
     )
   }
