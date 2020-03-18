@@ -1,9 +1,9 @@
-import privateResolver from 'src/api/utils/privateResolver';
-import User from 'src/entities/User';
-import { EditPlaceMutationArgs, EditPlaceResponse } from 'src/types/graph';
-import Place from 'src/entities/Place';
-import cleanNullArgs from 'src/api/utils/cleanNullArgs';
-import { Resolvers } from 'src/types/resolvers';
+import privateResolver from '../../../api/utils/privateResolver';
+import User from '../../../entities/User';
+import { EditPlaceMutationArgs, EditPlaceResponse } from '../../../types/graph';
+import Place from '../../../entities/Place';
+import { Resolvers } from '../../../types/resolvers';
+import cleanNullArgs from '../../utils/cleanNullArgs';
 
 const resolvers: Resolvers = {
   Mutation: {
@@ -18,7 +18,10 @@ const resolvers: Resolvers = {
           const place = await Place.findOne({ id: args.placeId });
           if (place) {
             if (place.userId === user.id) {
-              const notNull = cleanNullArgs(args);
+              const notNull: any = cleanNullArgs(args);
+              if (notNull.placeId !== null) {
+                delete notNull.placeId;
+              }
               await Place.update({ id: args.placeId }, { ...notNull });
               return {
                 ok: true,

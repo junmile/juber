@@ -12,6 +12,7 @@ import User from './User';
 @Entity()
 class Place extends BaseEntity {
   @PrimaryGeneratedColumn() id: number;
+
   @Column({ type: 'text' })
   name: string;
 
