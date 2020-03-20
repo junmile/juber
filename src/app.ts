@@ -16,9 +16,11 @@ class App {
     this.app = new GraphQLServer({
       schema,
       context: (info: ContextParameters) => {
+        const { connection: { context = null } = {} } = info;
         return {
           req: info.request,
-          pubSub: this.pubSub
+          pubSub: this.pubSub,
+          context
         };
       }
     });

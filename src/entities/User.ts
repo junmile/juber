@@ -8,7 +8,6 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
   BeforeInsert,
-  BeforeUpdate,
   ManyToOne,
   OneToMany
 } from 'typeorm';
@@ -117,10 +116,12 @@ class User extends BaseEntity {
   }
 
   @BeforeInsert()
-  @BeforeUpdate()
   async savePassword(): Promise<void> {
     if (this.password) {
       const hashedPassword = await this.hashPassword(this.password);
+      console.log('■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■');
+      console.log(hashedPassword);
+      console.log('■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■');
       this.password = hashedPassword;
     }
   }
