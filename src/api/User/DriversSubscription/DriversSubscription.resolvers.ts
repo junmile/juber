@@ -11,14 +11,19 @@ const resolvers = {
           const {
             DriversSubscription: {
               lastLat: driverLastLat,
-              lastLng: driverLastLng
+              lastLng: driverLastLng,
+              id: driverId
             }
           } = payload;
+
           const { lastLat: userLastLat, lastLng: userLastLng } = user;
-          return{
-            driverLastLat >= userLastLat - 0.05 && driverLastLat <= userLastLat + 0.05 &&
-            driverLastLng >= userLastLng - 0.05 && driverLastLng <= userLastLng + 0.05
-          }
+          return (
+            user.id !== driverId &&
+            driverLastLat >= userLastLat - 0.05 &&
+            driverLastLat <= userLastLat + 0.05 &&
+            driverLastLng >= userLastLng - 0.05 &&
+            driverLastLng <= userLastLng + 0.05
+          );
         }
       )
     }
