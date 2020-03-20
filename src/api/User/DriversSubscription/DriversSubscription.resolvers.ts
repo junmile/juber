@@ -9,17 +9,16 @@ const resolvers = {
         (payload, _, { context }) => {
           const user: User = context.currentUser;
           const {
-            DriversSubscription: { id }
+            DriversSubscription: {
+              lastLat: driverLastLat,
+              lastLng: driverLastLng
+            }
           } = payload;
-
-          console.log('■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■');
-
-          console.log(id);
-
-          console.log('■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■');
-
-          console.log(user);
-          return true;
+          const { lastLat: userLastLat, lastLng: userLastLng } = user;
+          return{
+            driverLastLat >= userLastLat - 0.05 && driverLastLat <= userLastLat + 0.05 &&
+            driverLastLng >= userLastLng - 0.05 && driverLastLng <= userLastLng + 0.05
+          }
         }
       )
     }
