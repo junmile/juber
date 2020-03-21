@@ -1,13 +1,13 @@
 import {
   BaseEntity,
   Column,
-  Entity,
-  PrimaryGeneratedColumn,
   CreateDateColumn,
-  UpdateDateColumn,
-  ManyToOne
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn
 } from 'typeorm';
-import { rideStatus } from 'src/types/types';
+import { rideStatus } from '../types/types';
 import User from './User';
 
 @Entity()
@@ -17,7 +17,7 @@ class Ride extends BaseEntity {
   @Column({
     type: 'text',
     enum: ['ACCEPTED', 'FINISHED', 'CANCELED', 'REQUESTING', 'ONROUTE'],
-    default: 'REQUESTING'
+    default: 'ACCEPTED'
   })
   status: rideStatus;
 
@@ -31,13 +31,13 @@ class Ride extends BaseEntity {
   pickUpLng: number;
 
   @Column({ type: 'text' })
-  dropOFFAddress: string;
+  dropOffAddress: string;
 
   @Column({ type: 'double precision', default: 0 })
   dropOffLat: number;
 
   @Column({ type: 'double precision', default: 0 })
-  dropOOffLng: number;
+  dropOffLng: number;
 
   @Column({ type: 'double precision', default: 0 })
   price: number;
@@ -65,5 +65,4 @@ class Ride extends BaseEntity {
 
   @UpdateDateColumn() updatedAt: string;
 }
-
 export default Ride;

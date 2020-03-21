@@ -9,9 +9,9 @@ type Mutation {
     pickUpAddress: String!
     pickUpLat: Float!
     pickUpLng: Float!
-    dropOFFAddress: String!
+    dropOffAddress: String!
     dropOffLat: Float!
-    dropOOffLng: Float!
+    dropOffLng: Float!
     price: Float!
     distance: String!
     duration: String!
