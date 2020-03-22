@@ -1,41 +1,49 @@
 import { Resolvers } from '../../../types/resolvers';
 import privateResolver from '../../utils/privateResolver';
 import User from '../../../entities/User';
-import { GetNearbyRidesResponse } from '../../../types/graph';
+import { GetNearbyRideResponse } from '../../../types/graph';
 import { Between } from 'typeorm';
 import Ride from '../../../entities/Ride';
 
 const resolvers: Resolvers = {
   Query: {
     GetNearbyRides: privateResolver(
-      async (_, __, { req }): Promise<GetNearbyRidesResponse> => {
+      async (_, __, { req }): Promise<GetNearbyRideResponse> => {
         const user: User = req.user;
         if (user.isDriving) {
           const { lastLat, lastLng } = user;
 
           try {
-            const rides: any = await Ride.find({
+            const ride: any = await Ride.findOne({
               status: 'REQUESTING',
               pickUpLat: Between(lastLat - 0.05, lastLng + 0.05),
               pickUpLng: Between(lastLng - 0.05, lastLng + 0.05)
             });
-            return {
-              ok: true,
-              error: null,
-              rides
-            };
+            if (ride) {
+              return {
+                ok: true,
+                error: null,
+                ride
+              };
+            } else {
+              return {
+                ok: true,
+                error: null,
+                ride: null
+              };
+            }
           } catch (error) {
             return {
               ok: false,
               error: error.message,
-              rides: null
+              ride: null
             };
           }
         } else {
           return {
             ok: false,
             error: 'You are not a driver',
-            rides: null
+            ride: null
           };
         }
       }
