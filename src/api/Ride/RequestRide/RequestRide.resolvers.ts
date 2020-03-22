@@ -18,7 +18,11 @@ const resolvers: Resolvers = {
         const user: User = req.user;
         console.log(user);
         try {
-          const ride = await Ride.create({ ...args }).save();
+          const ride: Ride | any = await Ride.create({
+            ...args,
+            passenger: user
+          }).save();
+          console.log(ride);
           return {
             ok: true,
             error: null,
