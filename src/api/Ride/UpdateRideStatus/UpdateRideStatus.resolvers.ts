@@ -22,7 +22,22 @@ const resolvers: Resolvers = {
               id: args.rideId,
               status: 'REQUESTING'
             });
-          } catch (error) {}
+            if (ride) {
+              ride.status = args.status;
+            } else {
+              return {
+                ok: false,
+                error: 'Cant update ride'
+              };
+            }
+          } catch (error) {
+            return { ok: false, error: error.message };
+          }
+        } else {
+          return {
+            ok: false,
+            error: 'User is no driving'
+          };
         }
       }
     )
