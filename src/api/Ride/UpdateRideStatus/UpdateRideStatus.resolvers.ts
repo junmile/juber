@@ -6,6 +6,7 @@ import {
   UpdateRideStatusResponse
 } from '../../../types/graph';
 import Ride from '../../../entities/Ride';
+import Chat from '../../../entities/Chat';
 
 const resolvers: Resolvers = {
   Mutation: {
@@ -20,14 +21,28 @@ const resolvers: Resolvers = {
           try {
             let ride: Ride | undefined;
             if (args.status === 'ACCEPTED') {
-              ride = await Ride.findOne({
+              ride = await Ride.findOne(
+                {
+                  id: args.rideId,
+                  status: 'REQUESTING'
+                },
+                { relations: ['passenger'] }
+              );
+              const ride2 = await Ride.findOne({
                 id: args.rideId,
                 status: 'REQUESTING'
               });
+              console.log('1번 : ', ride);
+              console.log('2번 : ', ride2);
+
               if (ride) {
                 ride.driver = user;
                 user.isTaken = true;
                 user.save();
+                await Chat.create({
+                  driver: user,
+                  passenger: ride.passenger
+                }).save();
               }
             } else {
               ride = await Ride.findOne({
