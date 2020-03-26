@@ -28,21 +28,17 @@ const resolvers: Resolvers = {
                 },
                 { relations: ['passenger'] }
               );
-              const ride2 = await Ride.findOne({
-                id: args.rideId,
-                status: 'REQUESTING'
-              });
-              console.log('1번 : ', ride);
-              console.log('2번 : ', ride2);
 
               if (ride) {
                 ride.driver = user;
                 user.isTaken = true;
                 user.save();
-                await Chat.create({
+                const chat = await Chat.create({
                   driver: user,
                   passenger: ride.passenger
                 }).save();
+                ride.chat = chat;
+                ride.save();
               }
             } else {
               ride = await Ride.findOne({
