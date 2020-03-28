@@ -23,7 +23,11 @@ const resolvers: Resolvers = {
               target: 'EMAIL'
             }).save();
             console.log(newVerification.key);
-            await sendVerificationEmail(user.fullName, newVerification.key);
+            await sendVerificationEmail(
+              user.fullName,
+              newVerification.key,
+              user.email
+            );
             return {
               ok: true,
               error: null

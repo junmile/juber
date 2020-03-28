@@ -37,6 +37,14 @@ const resolvers: Resolvers = {
                   driver: user,
                   passenger: ride.passenger
                 }).save();
+                console.log('■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■');
+                console.log('드라이버 : ', user);
+                console.log('승객 : ', ride.passenger);
+                console.log(user);
+                console.log(ride);
+                console.log(chat);
+                console.log('■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■');
+
                 ride.chat = chat;
                 ride.save();
               }

@@ -2,13 +2,13 @@ import bcrypt from 'bcrypt';
 import { IsEmail } from 'class-validator';
 import {
   BaseEntity,
+  BeforeInsert,
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
-  BeforeInsert,
-  OneToMany
+  UpdateDateColumn
 } from 'typeorm';
 
 import Chat from './Chat';
@@ -87,7 +87,7 @@ class User extends BaseEntity {
     (type) => Message,
     (message) => message.user
   )
-  messags: Message[];
+  messages: Message[];
 
   @OneToMany(
     (type) => Ride,
@@ -107,13 +107,12 @@ class User extends BaseEntity {
   )
   places: Place[] | any;
 
-  @CreateDateColumn()
-  createdAt: string;
+  @CreateDateColumn() createdAt: string;
 
   @UpdateDateColumn() updatedAt: string;
 
   get fullName(): string {
-    return `${this.lastName} ${this.firstName}`;
+    return `${this.firstName} ${this.lastName}`;
   }
 
   public comparePassword(password: string): Promise<boolean> {
@@ -124,12 +123,10 @@ class User extends BaseEntity {
   async savePassword(): Promise<void> {
     if (this.password) {
       const hashedPassword = await this.hashPassword(this.password);
-      console.log('■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■');
-      console.log(hashedPassword);
-      console.log('■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■');
       this.password = hashedPassword;
     }
   }
+
   private hashPassword(password: string): Promise<string> {
     return bcrypt.hash(password, BCRYPT_ROUNDS);
   }

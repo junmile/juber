@@ -86,4 +86,5 @@ class Ride extends BaseEntity {
 
   @UpdateDateColumn() updatedAt: string;
 }
+
 export default Ride;

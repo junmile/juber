@@ -1,11 +1,11 @@
 import {
   BaseEntity,
   Column,
-  Entity,
-  PrimaryGeneratedColumn,
   CreateDateColumn,
-  UpdateDateColumn,
-  ManyToOne
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn
 } from 'typeorm';
 
 import Chat from './Chat';
@@ -18,15 +18,21 @@ class Message extends BaseEntity {
   @Column({ type: 'text' })
   text: string;
 
+  @Column({ nullable: true })
+  chatId: number;
+
   @ManyToOne(
     (type) => Chat,
     (chat) => chat.messages
   )
   chat: Chat;
 
+  @Column({ nullable: true })
+  userId: number;
+
   @ManyToOne(
-    (type) => Message,
-    (message) => message.user
+    (type) => User,
+    (user) => user.messages
   )
   user: User;
 
@@ -34,5 +40,4 @@ class Message extends BaseEntity {
 
   @UpdateDateColumn() updatedAt: string;
 }
-
 export default Message;

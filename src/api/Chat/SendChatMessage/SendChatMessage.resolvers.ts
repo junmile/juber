@@ -14,18 +14,25 @@ const resolvers: Resolvers = {
       async (
         _,
         args: SendChatMessageMutationArgs,
-        { req }
+        { req, pubSub }
       ): Promise<SendChatMessageResponse> => {
         const user: User = req.user;
         try {
-          const chat = await Chat.findOne({ id: args.chatId });
+          const { text, chatId } = args;
+          const chat = await Chat.findOne({ id: chatId });
           if (chat) {
             if (chat.passengerId === user.id || chat.driverId === user.id) {
+              console.log('유져: ', user);
+              console.log('쳇 : ', chat);
               const message: any = await Message.create({
-                text: args.text,
+                text,
                 chat,
                 user
               }).save();
+              console.log('■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■');
+              pubSub.publish('newChatMessage', {
+                MessageSubscription: message
+              });
               return {
                 ok: true,
                 error: null,
@@ -33,7 +40,7 @@ const resolvers: Resolvers = {
               };
             } else {
               return {
-                ok: true,
+                ok: false,
                 error: 'unauthorized',
                 message: null
               };
@@ -46,6 +53,8 @@ const resolvers: Resolvers = {
             };
           }
         } catch (error) {
+          console.log(error.message);
+          console.log(error);
           return {
             ok: false,
             error: error.message,

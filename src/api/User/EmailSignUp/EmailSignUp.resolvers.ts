@@ -37,7 +37,8 @@ const resolvers: Resolvers = {
 
               await sendVerificationEmail(
                 newUser.fullName,
-                emailVerification.key
+                emailVerification.key,
+                args.email
               );
             }
             const token = createJWT(newUser.id);
