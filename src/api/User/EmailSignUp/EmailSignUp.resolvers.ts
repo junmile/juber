@@ -18,12 +18,12 @@ const resolvers: Resolvers = {
           return {
             ok: false,
             error: 'You should log in instead',
-            token: null
+            token: null,
           };
         } else {
           const phoneVerification = await Verification.findOne({
             payload: args.phoneNumber,
-            verified: true
+            verified: true,
           });
           if (phoneVerification) {
             const newUser = await User.create({ ...args }).save();
@@ -32,7 +32,7 @@ const resolvers: Resolvers = {
             if (newUser.email) {
               const emailVerification = await Verification.create({
                 payload: newUser.email,
-                target: 'EMAIL'
+                target: 'EMAIL',
               }).save();
 
               await sendVerificationEmail(
@@ -45,13 +45,13 @@ const resolvers: Resolvers = {
             return {
               ok: true,
               error: null,
-              token
+              token,
             };
           } else {
             return {
               ok: true,
               error: "You haven't verified your phone number",
-              token: null
+              token: null,
             };
           }
         }
@@ -59,11 +59,11 @@ const resolvers: Resolvers = {
         return {
           ok: false,
           error: error.message,
-          token: null
+          token: null,
         };
       }
-    }
-  }
+    },
+  },
 };
 
 export default resolvers;

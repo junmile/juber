@@ -1,7 +1,7 @@
 import { Resolvers } from '../../../types/resolvers';
 import {
   CompletePhoneVerificationMutationArgs,
-  CompletePhoneVerificationResponse
+  CompletePhoneVerificationResponse,
 } from 'src/types/graph';
 import Verification from '../../../entities/Verification';
 import User from '../../../entities/User';
@@ -17,13 +17,13 @@ const resolvers: Resolvers = {
       try {
         const verification = await Verification.findOne({
           payload: phoneNumber,
-          key
+          key,
         });
         if (!verification) {
           return {
             ok: false,
             error: 'Verification key not vaild',
-            token: null
+            token: null,
           };
         } else {
           verification.verified = true;
@@ -33,36 +33,38 @@ const resolvers: Resolvers = {
         return {
           ok: false,
           error: error.message,
-          token: null
+          token: null,
         };
       }
       try {
         const user = await User.findOne({ phoneNumber });
+        console.log('user: ', user);
         if (user) {
           user.verifiedPhoneNumber = true;
           user.save();
           const token = createJWT(user.id);
+          console.log('token', token);
           return {
             ok: true,
             error: null,
-            token
+            token,
           };
         } else {
           return {
             ok: true,
             error: null,
-            token: null
+            token: null,
           };
         }
       } catch (error) {
         return {
           ok: false,
           error: error.message,
-          token: null
+          token: null,
         };
       }
-    }
-  }
+    },
+  },
 };
 
 export default resolvers;

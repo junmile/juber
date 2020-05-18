@@ -214,7 +214,7 @@ type User {
   firstName: String!
   lastName: String!
   age: Int
-  password: String!
+  password: String
   phoneNumber: String
   verifiedPhoneNumber: Boolean!
   profilePhoto: String

@@ -9,10 +9,10 @@ const resolvers: Resolvers = {
       return {
         ok: true,
         error: null,
-        user
+        user,
       };
-    })
-  }
+    }),
+  },
 };
 
 export default resolvers;

@@ -8,7 +8,7 @@ import {
   Entity,
   OneToMany,
   PrimaryGeneratedColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
 } from 'typeorm';
 
 import Chat from './Chat';
@@ -20,7 +20,10 @@ const BCRYPT_ROUNDS = 10;
 
 @Entity()
 class User extends BaseEntity {
-  @PrimaryGeneratedColumn() id: number;
+  BCRYPT_ROUND = 10;
+
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column({ type: 'text', nullable: true })
   @IsEmail()
@@ -50,6 +53,15 @@ class User extends BaseEntity {
   @Column({ type: 'text' })
   profilePhoto: string;
 
+  @Column({ type: 'text', nullable: true })
+  fbId: string;
+
+  @CreateDateColumn()
+  createdAt: string;
+
+  @UpdateDateColumn()
+  updatedAt: string;
+
   @Column({ type: 'boolean', default: false })
   isDriving: boolean;
 
@@ -68,54 +80,29 @@ class User extends BaseEntity {
   @Column({ type: 'double precision', default: 0 })
   lastOrientation: number;
 
-  @Column({ type: 'text', nullable: true })
-  fbId: string;
-
-  @OneToMany(
-    (type) => Chat,
-    (chat) => chat.passenger
-  )
+  @OneToMany((type) => Chat, (chat) => chat.passenger)
   chatsAsPassenger: Chat[];
 
-  @OneToMany(
-    (type) => Chat,
-    (chat) => chat.driver
-  )
+  @OneToMany((type) => Chat, (chat) => chat.driver)
   chatsAsDriver: Chat[];
 
-  @OneToMany(
-    (type) => Message,
-    (message) => message.user
-  )
+  @OneToMany((type) => Message, (message) => message.user)
   messages: Message[];
 
-  @OneToMany(
-    (type) => Ride,
-    (ride) => ride.passenger
-  )
+  @OneToMany((type) => Ride, (ride) => ride.passenger)
   ridesAsPassenger: Ride[];
 
-  @OneToMany(
-    (type) => Ride,
-    (ride) => ride.driver
-  )
+  @OneToMany((type) => Ride, (ride) => ride.driver)
   ridesAsDriver: Ride[];
 
-  @OneToMany(
-    (type) => Place,
-    (place) => place.user
-  )
+  @OneToMany((type) => Place, (place) => place.user)
   places: Place[] | any;
 
-  @CreateDateColumn() createdAt: string;
-
-  @UpdateDateColumn() updatedAt: string;
-
   get fullName(): string {
-    return `${this.firstName} ${this.lastName}`;
+    return `${this.lastName} ${this.firstName}`;
   }
 
-  public comparePassword(password: string): Promise<boolean> {
+  public comparePassword(password: string | null): Promise<boolean> {
     return bcrypt.compare(password, this.password);
   }
 

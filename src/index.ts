@@ -22,12 +22,12 @@ const appOptions: Options = {
       if (token) {
         const user = await decodeJWT(token);
         return {
-          currentUser: user
+          currentUser: user,
         };
       }
       throw new Error("No JWT. Can't subscribe");
-    }
-  }
+    },
+  },
 };
 
 const handleAppStart = () => console.log(`listening on port ${PORT}`);

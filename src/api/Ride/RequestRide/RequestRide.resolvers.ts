@@ -2,7 +2,7 @@ import { Resolvers } from '../../../types/resolvers';
 import privateResolver from '../../utils/privateResolver';
 import {
   RequestRideMutationArgs,
-  RequestRideResponse
+  RequestRideResponse,
 } from '../../../types/graph';
 import User from '../../../entities/User';
 import Ride from '../../../entities/Ride';
@@ -16,38 +16,38 @@ const resolvers: Resolvers = {
         { req, pubSub }
       ): Promise<RequestRideResponse> => {
         const user: User = req.user;
-
+        console.log('리퀘스트라이드 : ', args);
+        console.log(user.isRiding);
         if (!user.isRiding) {
           try {
             const ride: Ride | any = await Ride.create({
               ...args,
-              passenger: user
+              passenger: user,
             }).save();
             pubSub.publish('rideRequest', { NearbyRideSubscription: ride });
-            user.isRiding = true;
             user.save();
             return {
               ok: true,
               error: null,
-              ride
+              ride,
             };
           } catch (error) {
             return {
               ok: false,
               error: error.message,
-              ride: null
+              ride: null,
             };
           }
         } else {
           return {
             ok: false,
             error: "You can't request two rides",
-            ride: null
+            ride: null,
           };
         }
       }
-    )
-  }
+    ),
+  },
 };
 
 export default resolvers;

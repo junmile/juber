@@ -9,6 +9,7 @@ const resolvers: Resolvers = {
   Query: {
     GetNearbyRides: privateResolver(
       async (_, __, { req }): Promise<GetNearbyRideResponse> => {
+        console.log('돼?');
         const user: User = req.user;
         if (user.isDriving) {
           const { lastLat, lastLng } = user;
@@ -17,38 +18,38 @@ const resolvers: Resolvers = {
             const ride: any = await Ride.findOne({
               status: 'REQUESTING',
               pickUpLat: Between(lastLat - 0.05, lastLng + 0.05),
-              pickUpLng: Between(lastLng - 0.05, lastLng + 0.05)
+              pickUpLng: Between(lastLng - 0.05, lastLng + 0.05),
             });
             if (ride) {
               return {
                 ok: true,
                 error: null,
-                ride
+                ride,
               };
             } else {
               return {
                 ok: true,
                 error: null,
-                ride: null
+                ride: null,
               };
             }
           } catch (error) {
             return {
               ok: false,
               error: error.message,
-              ride: null
+              ride: null,
             };
           }
         } else {
           return {
             ok: false,
             error: 'You are not a driver',
-            ride: null
+            ride: null,
           };
         }
       }
-    )
-  }
+    ),
+  },
 };
 
 export default resolvers;
