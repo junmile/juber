@@ -15,11 +15,14 @@ const resolvers: Resolvers = {
           const { lastLat, lastLng } = user;
 
           try {
-            const ride: any = await Ride.findOne({
-              status: 'REQUESTING',
-              pickUpLat: Between(lastLat - 0.05, lastLng + 0.05),
-              pickUpLng: Between(lastLng - 0.05, lastLng + 0.05),
-            });
+            const ride: any = await Ride.findOne(
+              {
+                status: 'REQUESTING',
+                pickUpLat: Between(lastLat - 0.05, lastLng + 0.05),
+                pickUpLng: Between(lastLng - 0.05, lastLng + 0.05),
+              },
+              { relations: ['passenger'] }
+            );
             if (ride) {
               return {
                 ok: true,
