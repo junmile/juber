@@ -1,7 +1,7 @@
 type GetNearbyRideResponse {
   ok: Boolean!
   error: String
-  ride: [Ride]
+  ride: Ride
 }
 
 type Query {

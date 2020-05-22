@@ -13,7 +13,6 @@ const resolvers: Resolvers = {
         const user: User = req.user;
         if (user.isDriving) {
           const { lastLat, lastLng } = user;
-
           try {
             const ride: any = await Ride.findOne(
               {

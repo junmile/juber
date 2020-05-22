@@ -106,7 +106,7 @@ type Place {
 type GetNearbyRideResponse {
   ok: Boolean!
   error: String
-  ride: [Ride]
+  ride: Ride
 }
 
 type GetRideResponse {
@@ -146,6 +146,7 @@ type Ride {
 type UpdateRideStatusResponse {
   ok: Boolean!
   error: String
+  rideId: Int
 }
 
 enum StatusOptions {

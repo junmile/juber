@@ -3,7 +3,7 @@ import privateResolver from '../../utils/privateResolver';
 import User from '../../../entities/User';
 import {
   UpdateRideStatusMutationArgs,
-  UpdateRideStatusResponse
+  UpdateRideStatusResponse,
 } from '../../../types/graph';
 import Ride from '../../../entities/Ride';
 import Chat from '../../../entities/Chat';
@@ -24,7 +24,7 @@ const resolvers: Resolvers = {
               ride = await Ride.findOne(
                 {
                   id: args.rideId,
-                  status: 'REQUESTING'
+                  status: 'REQUESTING',
                 },
                 { relations: ['passenger'] }
               );
@@ -35,23 +35,15 @@ const resolvers: Resolvers = {
                 user.save();
                 const chat = await Chat.create({
                   driver: user,
-                  passenger: ride.passenger
+                  passenger: ride.passenger,
                 }).save();
-                console.log('■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■');
-                console.log('드라이버 : ', user);
-                console.log('승객 : ', ride.passenger);
-                console.log(user);
-                console.log(ride);
-                console.log(chat);
-                console.log('■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■');
-
                 ride.chat = chat;
                 ride.save();
               }
             } else {
               ride = await Ride.findOne({
                 id: args.rideId,
-                driver: user
+                driver: user,
               });
             }
             if (ride) {
@@ -60,26 +52,29 @@ const resolvers: Resolvers = {
               pubSub.publish('rideUpdate', { RideStatusSubscription: ride });
               return {
                 ok: true,
-                error: null
+                error: null,
+                rideId: ride.id,
               };
             } else {
               return {
                 ok: false,
-                error: 'Cant update ride'
+                error: 'Cant update ride',
+                rideId: null,
               };
             }
           } catch (error) {
-            return { ok: false, error: error.message };
+            return { ok: false, error: error.message, rideId: null };
           }
         } else {
           return {
             ok: false,
-            error: 'You are not driving'
+            error: 'You are not driving',
+            rideId: null,
           };
         }
       }
-    )
-  }
+    ),
+  },
 };
 
 export default resolvers;
