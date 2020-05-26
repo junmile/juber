@@ -9,6 +9,7 @@ type Query {
   GetMyPlaces: GetMyPlacesResponse!
   GetNearbyRides: GetNearbyRideResponse!
   GetRide(rideId: Int!): GetRideResponse!
+  GetRidebyId: GetRidebyIdResponse!
   GetMyProfile: GetMyProfileResponse!
   GetNearbyDrivers: GetNearbyDriversResponse!
 }
@@ -113,6 +114,11 @@ type GetRideResponse {
   ok: Boolean!
   error: String
   ride: Ride
+}
+
+type GetRidebyIdResponse {
+  ok: Boolean!
+  error: String
 }
 
 type RequestRideResponse {

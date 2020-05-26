@@ -1,0 +1,8 @@
+type GetRidebyIdResponse {
+  ok: Boolean!
+  error: String
+}
+
+type Query {
+  GetRidebyId: GetRidebyIdResponse!
+}

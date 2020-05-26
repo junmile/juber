@@ -10,42 +10,46 @@ const resolvers: Resolvers = {
       async (_, args: GetRideQueryArgs, { req }): Promise<GetRideResponse> => {
         const user: User = req.user;
         console.log('user아이디 : ', user.id);
+        console.log('args.rideId : ', args.rideId);
         try {
-          const ride: any = await Ride.findOne({
-            id: args.rideId
-          });
+          const ride: any = await Ride.findOne(
+            {
+              id: args.rideId,
+            },
+            { relations: ['passenger', 'driver'] }
+          );
           if (ride) {
             console.log('ride객체 : ', ride);
             if (ride.passengerId === user.id || ride.driverId === user.id) {
               return {
                 ok: true,
                 error: null,
-                ride
+                ride,
               };
             } else {
               return {
                 ok: false,
                 error: 'not authorized',
-                ride: null
+                ride: null,
               };
             }
           } else {
             return {
               ok: false,
               error: 'ride not found',
-              ride: null
+              ride: null,
             };
           }
         } catch (error) {
           return {
             ok: false,
             error: error.message,
-            ride: null
+            ride: null,
           };
         }
       }
-    )
-  }
+    ),
+  },
 };
 
 export default resolvers;
