@@ -49,6 +49,19 @@ const resolvers: Resolvers = {
                 { relations: ['passenger', 'driver'] }
               );
             }
+            if (ride && args.status === 'FINISHED') {
+              user.isTaken = false;
+              user.save();
+
+              const passenger: User | any = await User.findOne({
+                id: ride.passenger.id,
+              });
+              console.log('패신져 : ', passenger);
+              console.log('패신져 : ', passenger.isRiding);
+              console.log('패신져 : ', passenger);
+              passenger!.isRiding = false;
+              passenger.save();
+            }
             if (ride) {
               ride.status = args.status;
               ride.save();
@@ -69,6 +82,39 @@ const resolvers: Resolvers = {
             return { ok: false, error: error.message, rideId: null };
           }
         } else {
+          try {
+            console.log('되긴돼??');
+            let ride: Ride | undefined;
+            ride = await Ride.findOne({
+              passengerId: req.user,
+            });
+            console.log('라이더1 : ', args.status);
+            if (ride) {
+              pubSub.publish('rideUpdate', { RideStatusSubscription: ride });
+              console.log('라이더2 : ', args.status);
+              if (args.status === 'FINISHED') {
+                user.isRiding = false;
+                user.save();
+              }
+              return {
+                ok: true,
+                error: null,
+                rideId: ride.id,
+              };
+            } else {
+              return {
+                ok: false,
+                error: '고객의정보를 찾을수 없습니다.',
+                rideId: null,
+              };
+            }
+          } catch (error) {
+            return {
+              ok: false,
+              error: error.message,
+              rideId: null,
+            };
+          }
           return {
             ok: false,
             error: 'You are not driving',

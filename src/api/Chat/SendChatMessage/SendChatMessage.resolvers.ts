@@ -2,7 +2,7 @@ import { Resolvers } from '../../../types/resolvers';
 import privateResolver from '../../utils/privateResolver';
 import {
   SendChatMessageResponse,
-  SendChatMessageMutationArgs
+  SendChatMessageMutationArgs,
 } from '../../../types/graph';
 import User from '../../../entities/User';
 import Message from '../../../entities/Message';
@@ -22,48 +22,45 @@ const resolvers: Resolvers = {
           const chat = await Chat.findOne({ id: chatId });
           if (chat) {
             if (chat.passengerId === user.id || chat.driverId === user.id) {
-              console.log('유져: ', user);
-              console.log('쳇 : ', chat);
               const message: any = await Message.create({
                 text,
                 chat,
-                user
+                user,
               }).save();
               console.log('■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■');
               pubSub.publish('newChatMessage', {
-                MessageSubscription: message
+                MessageSubscription: message,
               });
               return {
                 ok: true,
                 error: null,
-                message
+                message,
               };
             } else {
               return {
                 ok: false,
                 error: 'unauthorized',
-                message: null
+                message: null,
               };
             }
           } else {
             return {
               ok: false,
               error: 'chat not found',
-              message: null
+              message: null,
             };
           }
         } catch (error) {
           console.log(error.message);
-          console.log(error);
           return {
             ok: false,
             error: error.message,
-            message: null
+            message: null,
           };
         }
       }
-    )
-  }
+    ),
+  },
 };
 
 export default resolvers;

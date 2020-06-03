@@ -16,8 +16,6 @@ const resolvers: Resolvers = {
         { req, pubSub }
       ): Promise<RequestRideResponse> => {
         const user: User = req.user;
-        console.log('리퀘스트라이드 : ', args);
-        console.log(user.isRiding);
         if (!user.isRiding) {
           try {
             const ride: Ride | any = await Ride.create({
@@ -25,6 +23,7 @@ const resolvers: Resolvers = {
               passenger: user,
             }).save();
             pubSub.publish('rideRequest', { NearbyRideSubscription: ride });
+            user.isRiding = true;
             user.save();
             return {
               ok: true,
@@ -39,10 +38,12 @@ const resolvers: Resolvers = {
             };
           }
         } else {
+          const ride: Ride | any = await Ride.findOne({ passenger: req.user });
+
           return {
             ok: false,
-            error: "You can't request two rides",
-            ride: null,
+            error: '두개 이상의 요청은 하실 수 없습니다.',
+            ride: ride,
           };
         }
       }

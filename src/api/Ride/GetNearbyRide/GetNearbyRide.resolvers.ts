@@ -9,7 +9,6 @@ const resolvers: Resolvers = {
   Query: {
     GetNearbyRides: privateResolver(
       async (_, __, { req }): Promise<GetNearbyRideResponse> => {
-        console.log('돼?');
         const user: User = req.user;
         if (user.isDriving) {
           const { lastLat, lastLng } = user;

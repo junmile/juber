@@ -11,29 +11,39 @@ const resolvers: Resolvers = {
         const user = await User.findOne({ id: req.user.id });
         if (user && !user.isDriving) {
           try {
-            const ride = await Ride.findOne({ passengerId: req.user.id });
-            if (ride) {
-              if (ride.status === 'REQUESTING') {
-                return { ok: true, error: null };
+            const rideById: Ride | any = await Ride.findOne(
+              { passengerId: req.user.id },
+              { relations: ['passenger', 'driver'] }
+            );
+            if (rideById) {
+              if (rideById.status === 'REQUESTING') {
+                return { ok: true, error: null, ride: rideById };
               } else {
-                return { ok: false, error: '요청중인 상태가 아닙니다.' };
+                return {
+                  ok: false,
+                  error: '요청중인 상태가 아닙니다.',
+                  ride: rideById,
+                };
               }
             } else {
               return {
                 ok: false,
-                error: '요청이안된 상태입니다.',
+                error: '요청이 안된 상태입니다.',
+                ride: null,
               };
             }
           } catch (error) {
             return {
               ok: false,
               error: '요청된 사항이 없습니다.',
+              ride: null,
             };
           }
         } else {
           return {
             ok: false,
             error: '운전자입니다.',
+            ride: null,
           };
         }
       }

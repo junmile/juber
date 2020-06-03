@@ -119,6 +119,7 @@ type GetRideResponse {
 type GetRidebyIdResponse {
   ok: Boolean!
   error: String
+  ride: Ride
 }
 
 type RequestRideResponse {
@@ -140,7 +141,7 @@ type Ride {
   distance: String!
   duration: String!
   driverId: Int
-  driver: User!
+  driver: User
   passengerId: Int!
   passenger: User!
   chatId: Int

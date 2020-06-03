@@ -1,6 +1,7 @@
 type GetRidebyIdResponse {
   ok: Boolean!
   error: String
+  ride: Ride
 }
 
 type Query {

@@ -9,8 +9,6 @@ const resolvers: Resolvers = {
     GetRide: privateResolver(
       async (_, args: GetRideQueryArgs, { req }): Promise<GetRideResponse> => {
         const user: User = req.user;
-        console.log('user아이디 : ', user.id);
-        console.log('args.rideId : ', args.rideId);
         try {
           const ride: any = await Ride.findOne(
             {
@@ -19,7 +17,6 @@ const resolvers: Resolvers = {
             { relations: ['passenger', 'driver'] }
           );
           if (ride) {
-            console.log('ride객체 : ', ride);
             if (ride.passengerId === user.id || ride.driverId === user.id) {
               return {
                 ok: true,
