@@ -9,13 +9,25 @@ const resolvers: Resolvers = {
     GetChat: privateResolver(
       async (_, args: GetChatQueryArgs, { req }): Promise<GetChatResponse> => {
         const user: User = req.user;
+        const { type, id } = args;
         try {
-          const chat: any = await Chat.findOne(
-            {
-              id: args.chatId,
-            },
-            { relations: ['messages'] }
-          );
+          let chat: any;
+          if (type === 'chatId') {
+            chat = await Chat.findOne(
+              {
+                id: id,
+              },
+              { relations: ['messages'] }
+            );
+          } else {
+            chat = await Chat.findOne(
+              {
+                rideId: id,
+              },
+              { relations: ['messages'] }
+            );
+          }
+
           if (chat) {
             if (chat.passengerId === user.id || chat.driverId === user.id) {
               return {

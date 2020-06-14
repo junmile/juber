@@ -5,7 +5,7 @@ type GetChatResponse {
 }
 
 type Query {
-  GetChat(chatId: Int!): GetChatResponse!
+  GetChat(type: String!, id: Int!): GetChatResponse!
   GetMyPlaces: GetMyPlacesResponse!
   GetNearbyRides: GetNearbyRideResponse!
   GetRide(rideId: Int!): GetRideResponse!
@@ -65,6 +65,7 @@ type Message {
   chatId: Int
   chat: Chat!
   userId: Int
+  messageCheck: Boolean!
   user: User!
   createdAt: String!
   updatedAt: String

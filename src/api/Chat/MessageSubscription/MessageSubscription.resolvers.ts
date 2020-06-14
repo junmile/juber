@@ -10,7 +10,7 @@ const resolvers = {
         async (payload, _, { context }) => {
           const user: User = context.currentUser;
           const {
-            MessageSubscription: { chatId }
+            MessageSubscription: { chatId },
           } = payload;
           try {
             const chat = await Chat.findOne({ id: chatId });
@@ -23,9 +23,9 @@ const resolvers = {
             return false;
           }
         }
-      )
-    }
-  }
+      ),
+    },
+  },
 };
 
 export default resolvers;

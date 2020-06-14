@@ -38,8 +38,11 @@ const resolvers: Resolvers = {
             };
           }
         } else {
-          const ride: Ride | any = await Ride.findOne({ passenger: req.user });
+          const ride: Ride | any = await Ride.findOne({
+            passenger: req.user,
+          });
 
+          console.log(ride);
           return {
             ok: false,
             error: '두개 이상의 요청은 하실 수 없습니다.',

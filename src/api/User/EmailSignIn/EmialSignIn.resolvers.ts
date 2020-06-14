@@ -10,18 +10,20 @@ const resolvers: Resolvers = {
       args: EmailSignInMutationArgs
     ): Promise<EmailSignInResponse> => {
       const { email, password } = args;
+      console.log(email, password);
       try {
         const user = await User.findOne({ email });
+        console.log(user);
         if (!user) {
           return {
             ok: false,
             error: 'No User found with that email',
-            token: null
+            token: null,
           };
         }
         const checkPassword = await user.comparePassword(password);
         console.log('■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■');
-        console.log(password);
+        console.log(checkPassword);
         if (checkPassword) {
           const token = createJWT(user.id);
           console.log('■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■');
@@ -29,24 +31,24 @@ const resolvers: Resolvers = {
           return {
             ok: true,
             error: null,
-            token
+            token,
           };
         } else {
           return {
             ok: false,
             error: 'Wrong password',
-            token: null
+            token: null,
           };
         }
       } catch (error) {
         return {
           ok: false,
           error: error.message,
-          token: null
+          token: null,
         };
       }
-    }
-  }
+    },
+  },
 };
 
 export default resolvers;
