@@ -1,0 +1,13 @@
+type RegistrationCheckResponse {
+  ok: Boolean!
+  error: String
+  user: User
+}
+
+type Query {
+  RegistrationCheck(
+    type: String!
+    phoneNumber: String
+    email: String
+  ): RegistrationCheckResponse!
+}

@@ -14,6 +14,7 @@ const resolvers: Resolvers = {
       args: CompletePhoneVerificationMutationArgs
     ): Promise<CompletePhoneVerificationResponse> => {
       const { phoneNumber, key } = args;
+      console.log('completePhoneVerification : ', args);
       try {
         const verification = await Verification.findOne({
           payload: phoneNumber,
@@ -22,7 +23,7 @@ const resolvers: Resolvers = {
         if (!verification) {
           return {
             ok: false,
-            error: 'Verification key not vaild',
+            error: '인증 키를 정확히 기입해 주세요.',
             token: null,
           };
         } else {
@@ -38,7 +39,9 @@ const resolvers: Resolvers = {
       }
       try {
         const user = await User.findOne({ phoneNumber });
+        console.log('여기로넘어옴');
         if (user) {
+          console.log('1번');
           user.verifiedPhoneNumber = true;
           user.save();
           const token = createJWT(user.id);
@@ -49,9 +52,10 @@ const resolvers: Resolvers = {
             token,
           };
         } else {
+          console.log('2번');
           return {
             ok: true,
-            error: null,
+            error: '인증 되었습니다.',
             token: null,
           };
         }

@@ -2,7 +2,7 @@ import { Resolvers } from 'src/types/resolvers';
 import privateResolver from '../../../api/utils/privateResolver';
 import {
   CompleteEmailVerificationMutationArgs,
-  CompleteEmailVerificationResponse
+  CompleteEmailVerificationResponse,
 } from 'src/types/graph';
 import User from 'src/entities/User';
 import Verification from '../../../entities/Verification';
@@ -15,6 +15,7 @@ const resolvers: Resolvers = {
         args: CompleteEmailVerificationMutationArgs,
         { req }
       ): Promise<CompleteEmailVerificationResponse> => {
+        console.log('completeEmailVerification : ', '시작');
         const user: User = req.user;
         const { key } = args;
 
@@ -22,7 +23,7 @@ const resolvers: Resolvers = {
           try {
             const verification = await Verification.findOne({
               key,
-              payload: user.email
+              payload: user.email,
             });
             if (verification) {
               user.verifiedEmail = true;
@@ -31,29 +32,29 @@ const resolvers: Resolvers = {
               verification.save();
               return {
                 ok: true,
-                error: null
+                error: null,
               };
             } else {
               return {
                 ok: false,
-                error: "Can't verify email"
+                error: "Can't verify email",
               };
             }
           } catch (error) {
             return {
               ok: false,
-              error: error.message
+              error: error.message,
             };
           }
         } else {
           return {
             ok: false,
-            error: 'No email to verify'
+            error: 'No email to verify',
           };
         }
       }
-    )
-  }
+    ),
+  },
 };
 
 export default resolvers;

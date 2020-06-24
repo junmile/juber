@@ -21,12 +21,20 @@ const resolvers: Resolvers = {
             token: null,
           };
         } else {
+          console.log('verificationPhoneNumber :', args.phoneNumber);
           const phoneVerification = await Verification.findOne({
             payload: args.phoneNumber,
             verified: true,
           });
           if (phoneVerification) {
-            const newUser = await User.create({ ...args }).save();
+            const { email, firstName, lastName, password, age } = args;
+            const newUser = await User.create({
+              email,
+              firstName,
+              lastName,
+              password,
+              age,
+            }).save();
             newUser.verifiedPhoneNumber = true;
             newUser.save();
             if (newUser.email) {

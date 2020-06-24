@@ -6,6 +6,7 @@ const mailGunClient = new Mailgun({
 });
 
 const sendEmail = (subject: string, html: string, to: string) => {
+  console.log('메일건사용');
   const emailData = {
     from: 'hyolee1003@nate.com',
     to,

@@ -12,6 +12,7 @@ type Query {
   GetRidebyId: GetRidebyIdResponse!
   GetMyProfile: GetMyProfileResponse!
   GetNearbyDrivers: GetNearbyDriversResponse!
+  RegistrationCheck(type: String!, phoneNumber: String, email: String): RegistrationCheckResponse!
 }
 
 type Subscription {
@@ -37,7 +38,7 @@ type Mutation {
   CompleteEmailVerification(key: String!): CompleteEmailVerificationResponse!
   CompletePhoneVerification(phoneNumber: String!, key: String!): CompletePhoneVerificationResponse!
   EmailSignIn(email: String!, password: String!): EmailSignInResponse!
-  EmailSignUp(firstName: String!, lastName: String!, email: String!, password: String!, profilePhoto: String!, age: Int!, phoneNumber: String!): EmailSignUpResponse
+  EmailSignUp(firstName: String!, lastName: String!, email: String!, password: String!, profilePhoto: String, age: Int!, phoneNumber: String!): EmailSignUpResponse
   FacebookConnect(firstName: String!, lastName: String!, email: String, fbId: String!): FacebookConnectResponse!
   ReportMovement(orientation: Float, lastLat: Float, lastLng: Float): ReportMovementResponse!
   RequestEmailVerification: RequestEmailVerificationResponse!
@@ -204,6 +205,12 @@ type GetNearbyDriversResponse {
   ok: Boolean!
   error: String
   drivers: [User]
+}
+
+type RegistrationCheckResponse {
+  ok: Boolean!
+  error: String
+  user: User
 }
 
 type ReportMovementResponse {
