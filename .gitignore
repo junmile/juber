@@ -57,5 +57,8 @@ typings/
 # dotenv environment variables file
 .env
 *.zip
+
 # next.js build output
 .next
+.DS_Store
+dist

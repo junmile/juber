@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
+    "outDir": "dist",
     "paths": {
       "src/*": ["./src/*"]
     },
-    "outDir": "dist",
     "module": "commonjs",
     "target": "es5",
     "lib": ["es6", "dom", "esnext.asynciterable"],

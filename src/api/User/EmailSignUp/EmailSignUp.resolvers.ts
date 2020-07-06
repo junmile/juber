@@ -27,13 +27,21 @@ const resolvers: Resolvers = {
             verified: true,
           });
           if (phoneVerification) {
-            const { email, firstName, lastName, password, age } = args;
+            const {
+              email,
+              firstName,
+              lastName,
+              password,
+              age,
+              phoneNumber,
+            } = args;
             const newUser = await User.create({
               email,
               firstName,
               lastName,
               password,
               age,
+              phoneNumber,
             }).save();
             newUser.verifiedPhoneNumber = true;
             newUser.save();
