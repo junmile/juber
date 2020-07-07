@@ -31,7 +31,8 @@
     "types": "graphql-to-typescript ./src/schema.graphql ./src/types/graph.d.ts",
     "prebuild": "rm -rf dist",
     "build": "tsc ",
-    "postbuild": "yarn copy src/api/**/*.graphql dist/api"
+    "postbuild": "yarn copy src/api/**/*.graphql dist/api",
+    "start": "cd dist &&  node ."
   },
   "dependencies": {
     "bcrypt": "^4.0.0",
