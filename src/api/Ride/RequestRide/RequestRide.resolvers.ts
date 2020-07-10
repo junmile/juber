@@ -6,6 +6,7 @@ import {
 } from '../../../types/graph';
 import User from '../../../entities/User';
 import Ride from '../../../entities/Ride';
+import { Equal } from 'typeorm';
 
 const resolvers: Resolvers = {
   Mutation: {
@@ -38,9 +39,12 @@ const resolvers: Resolvers = {
             };
           }
         } else {
-          const ride: Ride | any = await Ride.findOne({
-            passenger: req.user,
-          });
+          const ride: Ride | any = await Ride.findOne(
+            {
+              passenger: req.user,
+            },
+            { where: { status: Equal('CANCELED') } }
+          );
 
           console.log(ride);
           return {
