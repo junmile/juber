@@ -17,9 +17,9 @@ const resolvers: Resolvers = {
         { req, pubSub }
       ): Promise<UpdateRideStatusResponse> => {
         const user: User = req.user;
+        let ride: Ride | undefined;
         if (user.isDriving) {
           try {
-            let ride: Ride | undefined;
             if (args.status === 'ACCEPTED') {
               ride = await Ride.findOne(
                 {
@@ -83,6 +83,28 @@ const resolvers: Resolvers = {
             return { ok: false, error: error.message, rideId: null };
           }
         } else {
+          if (args.status === 'CANCELED') {
+            ride = await Ride.findOne(
+              { id: args.rideId, status: 'REQUESTING' },
+              { relations: ['passenger', 'driver'] }
+            );
+            if (ride) {
+              ride.status = 'CANCELED';
+              ride.save();
+
+              return {
+                ok: true,
+                error: null,
+                rideId: ride.id,
+              };
+            } else {
+              return {
+                ok: false,
+                error: '해당 라이드 정보가 없습니다.',
+                rideId: null,
+              };
+            }
+          }
           return {
             ok: false,
             error: 'You are not driving',
