@@ -39,18 +39,18 @@ const resolvers: Resolvers = {
             };
           }
         } else {
-          const ride: Ride | any = await Ride.findOne(
-            {
+          const ride: Ride | any = await Ride.find({
+            where: {
               passenger: req.user,
+              status: Equal('ACCEPTED' || 'ONROUTE' || 'REQUESTING'),
             },
-            { where: { status: Equal('CANCELED') } }
-          );
-
-          console.log(ride);
+          });
+          console.log('걸러진거 : ', ride);
+          console.log('그안 : ', ride[0]);
           return {
             ok: false,
             error: '두개 이상의 요청은 하실 수 없습니다.',
-            ride: ride,
+            ride: ride[0],
           };
         }
       }

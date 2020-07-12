@@ -12,11 +12,7 @@ type Query {
   GetRidebyId: GetRidebyIdResponse!
   GetMyProfile: GetMyProfileResponse!
   GetNearbyDrivers: GetNearbyDriversResponse!
-  RegistrationCheck(
-    type: String!
-    phoneNumber: String
-    email: String
-  ): RegistrationCheckResponse!
+  RegistrationCheck(type: String!, phoneNumber: String, email: String): RegistrationCheckResponse!
 }
 
 type Subscription {
@@ -34,67 +30,21 @@ type SendChatMessageResponse {
 
 type Mutation {
   SendChatMessage(text: String!, chatId: Int!): SendChatMessageResponse!
-  AddPlace(
-    name: String!
-    lat: Float!
-    lng: Float!
-    address: String!
-    isFav: Boolean!
-  ): AddPlaceResponse!
+  AddPlace(name: String!, lat: Float!, lng: Float!, address: String!, isFav: Boolean!): AddPlaceResponse!
   DeletePlace(placeId: Int!): DeletePlaceResponse!
   EditPlace(placeId: Int!, name: String, isFav: Boolean): EditPlaceResponse!
-  RequestRide(
-    pickUpAddress: String!
-    pickUpLat: Float!
-    pickUpLng: Float!
-    dropOffAddress: String!
-    dropOffLat: Float!
-    dropOffLng: Float!
-    price: Float!
-    distance: String!
-    duration: String!
-  ): RequestRideResponse!
-  UpdateRideStatus(
-    rideId: Int!
-    status: StatusOptions!
-  ): UpdateRideStatusResponse!
+  RequestRide(pickUpAddress: String!, pickUpLat: Float!, pickUpLng: Float!, dropOffAddress: String!, dropOffLat: Float!, dropOffLng: Float!, price: Float!, distance: String!, duration: String!): RequestRideResponse!
+  UpdateRideStatus(rideId: Int!, status: StatusOptions!): UpdateRideStatusResponse!
   CompleteEmailVerification(key: String!): CompleteEmailVerificationResponse!
-  CompletePhoneVerification(
-    phoneNumber: String!
-    key: String!
-  ): CompletePhoneVerificationResponse!
+  CompletePhoneVerification(phoneNumber: String!, key: String!): CompletePhoneVerificationResponse!
   EmailSignIn(email: String!, password: String!): EmailSignInResponse!
-  EmailSignUp(
-    firstName: String!
-    lastName: String!
-    email: String!
-    password: String!
-    profilePhoto: String
-    age: Int!
-    phoneNumber: String!
-  ): EmailSignUpResponse
-  FacebookConnect(
-    firstName: String!
-    lastName: String!
-    email: String
-    fbId: String!
-  ): FacebookConnectResponse!
-  ReportMovement(
-    orientation: Float
-    lastLat: Float
-    lastLng: Float
-  ): ReportMovementResponse!
+  EmailSignUp(firstName: String!, lastName: String!, email: String!, password: String!, profilePhoto: String, age: Int!, phoneNumber: String!): EmailSignUpResponse
+  FacebookConnect(firstName: String!, lastName: String!, email: String, fbId: String!): FacebookConnectResponse!
+  ReportMovement(orientation: Float, lastLat: Float, lastLng: Float): ReportMovementResponse!
   RequestEmailVerification: RequestEmailVerificationResponse!
   StartPhoneVerification(phoneNumber: String!): StartPhoneVerificationResponse!
   ToggleDrivingMode: ToggleDrivingModeResponse!
-  UpdateMyProfile(
-    firstName: String
-    lastName: String
-    email: String
-    password: String
-    profilePhoto: String
-    age: Int
-  ): UpdateMyProfileResponse!
+  UpdateMyProfile(firstName: String, lastName: String, email: String, password: String, profilePhoto: String, age: Int): UpdateMyProfileResponse!
 }
 
 type Chat {

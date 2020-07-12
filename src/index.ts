@@ -20,12 +20,13 @@ const appOptions: Options = {
     onConnect: async (connectionParams) => {
       const token = connectionParams['X-JWT'];
       if (token) {
+        console.log('되냐? : ', token);
         const user = await decodeJWT(token);
         return {
           currentUser: user,
         };
       }
-      throw new Error("No JWT. Can't subscribe");
+      return null;
     },
   },
 };

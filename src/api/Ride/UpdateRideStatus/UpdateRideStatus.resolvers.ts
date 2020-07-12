@@ -43,6 +43,12 @@ const resolvers: Resolvers = {
                 ride.chat = chat;
                 ride.chatId = chat.id;
                 ride.save();
+              } else {
+                return {
+                  ok: false,
+                  error: '사용자의 요청에 의해 취소 되었습니다.',
+                  rideId: null,
+                };
               }
             } else {
               ride = await Ride.findOne(
@@ -86,11 +92,14 @@ const resolvers: Resolvers = {
           if (args.status === 'CANCELED') {
             ride = await Ride.findOne(
               { id: args.rideId, status: 'REQUESTING' },
-              { relations: ['passenger', 'driver'] }
+              { relations: ['passenger'] }
             );
             if (ride) {
               ride.status = 'CANCELED';
+              console.log('유져정보 : ', user);
               ride.save();
+              user.isRiding = false;
+              user.save();
 
               return {
                 ok: true,
