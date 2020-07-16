@@ -2,7 +2,7 @@ import { Resolvers } from '../../../types/resolvers';
 import privateResolver from '../../../api/utils/privateResolver';
 import {
   UpdateMyProfileResponse,
-  UpdateMyProfileMutationArgs
+  UpdateMyProfileMutationArgs,
 } from 'src/types/graph';
 import User from '../../../entities/User';
 import cleanNullArgs from '../../../api/utils/cleanNullArgs';
@@ -23,20 +23,21 @@ const resolvers: Resolvers = {
             user.password = args.password;
             user.save();
           }
+
           await User.update({ id: user.id }, { ...notNull });
           return {
             ok: true,
-            error: null
+            error: null,
           };
         } catch (error) {
           return {
             ok: false,
-            error: error.message
+            error: error.message,
           };
         }
       }
-    )
-  }
+    ),
+  },
 };
 
 export default resolvers;
