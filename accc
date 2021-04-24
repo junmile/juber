@@ -1,0 +1,323 @@
+[33mcommit 0fd0ac9b847266586031ed62eaa383ddb6e9a90b[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31mheroku/master[m[33m)[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Sun Jul 12 21:55:36 2020 +0900
+
+    bug fixing
+
+[33mcommit 87454c4e4c2ce2724ec381344e017f3a9eddaa64[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Fri Jul 10 16:45:49 2020 +0900
+
+    sorted selection
+
+[33mcommit 6f8b2b3d1781de155a676a0469500f78bd977eba[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Fri Jul 10 16:21:24 2020 +0900
+
+    ride cancel
+
+[33mcommit e271b1efade865cc79ee23ef81ca1f57bb0e8619[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Tue Jul 7 19:57:45 2020 +0900
+
+    heroku finish
+
+[33mcommit 65b272b8e0f0a73e94cf738a479754fe3ca27a47[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Tue Jul 7 18:41:53 2020 +0900
+
+    bug fixing
+
+[33mcommit c830f66dcd6c7b1713e7744213162dc7e20eb32c[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Tue Jul 7 17:54:23 2020 +0900
+
+    bug fixing
+
+[33mcommit cc19e95d22b3283d9260362a341eb044048d359e[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Mon Jul 6 20:45:24 2020 +0900
+
+    heroku
+
+[33mcommit b186007b6024ba4173f3be7cbcd9041b594f8fb7[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Wed Jun 24 18:30:20 2020 +0900
+
+    commit
+
+[33mcommit a8a601312ffeecc8b4220995238f2c64e7ca88be[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Wed Jun 24 18:17:09 2020 +0900
+
+    rm
+
+[33mcommit 1bce9be8de36bc1481ff0ac339a4b62f1dcb5509[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Sun Jun 14 23:00:55 2020 +0900
+
+    commit
+
+[33mcommit 9553ccee82bde50592ed62facd013324e60dc4ce[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Wed Jun 3 20:36:35 2020 +0900
+
+    bug fixing
+
+[33mcommit 98107ea4da92bf20aecbaaa55ea69b13331b885a[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Tue May 26 19:04:04 2020 +0900
+
+    bug fixing
+
+[33mcommit 18ed58953ded0fafd97226833e012b436a935027[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Fri May 22 20:19:22 2020 +0900
+
+    change UpdateRideStatus
+
+[33mcommit 09de14b6673041b3a7028a7f5e8ee7f01707ea38[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Tue May 19 17:02:11 2020 +0900
+
+     commit
+
+[33mcommit ae69c5ae0859768eaa4f2d31f3c8a21b862142e0[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Mon May 18 19:31:54 2020 +0900
+
+    commit
+
+[33mcommit 35c4f58342143bcaabf8eb06e4247d0120435d0d[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Sat Mar 28 19:58:10 2020 +0900
+
+    1.#final commit
+
+[33mcommit 3f83167077aa3afcbf4234ada54173047a56132a[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Thu Mar 26 17:05:30 2020 +0900
+
+    #1.final
+
+[33mcommit 85069a88c9795d403e079dbf4f22f46b40382cd7[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Wed Mar 25 22:47:23 2020 +0900
+
+    #1.82
+
+[33mcommit 8202382c35b22c5d7de041cf5dc672ca27e03141[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Wed Mar 25 22:22:01 2020 +0900
+
+    #1.81
+
+[33mcommit 38595a7bf0871b4c0769ea9f863582313262fe14[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Wed Mar 25 20:42:42 2020 +0900
+
+    #1.80
+
+[33mcommit 0b9e89f7d8ac63ebb2299129b44b678449be6eaf[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Tue Mar 24 18:56:41 2020 +0900
+
+    #1.79
+
+[33mcommit 25d1416bcb8e6aa3d7c83cb6de4ea4834fabb482[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Mon Mar 23 22:54:56 2020 +0900
+
+    #1.78a
+
+[33mcommit 7a942d79ca4765ac03e2f5504f66d6ac014bc5ce[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Mon Mar 23 21:47:12 2020 +0900
+
+    #1.77
+
+[33mcommit b5cb7673a509e1932b6e283da2527688afb0c7d1[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Mon Mar 23 19:27:21 2020 +0900
+
+    #1.76
+
+[33mcommit 6657d760123c0924f186038de60ccfa1a97e6f25[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Sun Mar 22 22:54:12 2020 +0900
+
+    #1.76a
+
+[33mcommit cbfb9e7b269ffe419608379624dee6cb5b6c3fc9[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Sun Mar 22 22:41:36 2020 +0900
+
+    #1.75
+
+[33mcommit 93693a6a0f36458079311450a704544426845646[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Sun Mar 22 20:17:20 2020 +0900
+
+    #1.73
+
+[33mcommit da5c7ca4aef3add363dff492ab5d41fab979847e[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Sun Mar 22 18:39:43 2020 +0900
+
+    #1.72
+
+[33mcommit f4d8ca29cbb431f346b5e25a5f5517d620099b99[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Sat Mar 21 21:48:09 2020 +0900
+
+    #1.72b
+
+[33mcommit faeb8a68f6abac1a9065a5afe03b427361d1a485[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Sat Mar 21 21:43:23 2020 +0900
+
+    #1.72
+
+[33mcommit d78d9be32c57a30c30e483e5488b74c2189b7c8d[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Fri Mar 20 19:47:00 2020 +0900
+
+    #1.71
+
+[33mcommit 54d9759d121c4bf4e0ae6e267a6ea6b763a53fbc[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Fri Mar 20 19:05:22 2020 +0900
+
+    #1.70
+
+[33mcommit 43ff5c387f82726d42d0b3b8f0c775e10878164c[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Fri Mar 20 17:51:17 2020 +0900
+
+    #1.69
+
+[33mcommit d7be67cad5f6116b4964bb18b8f176facbd14b0e[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Thu Mar 19 18:06:24 2020 +0900
+
+    #1.68
+
+[33mcommit db17d9d71c9d501f96febe5a50ed8ea34c873ede[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Wed Mar 18 21:24:24 2020 +0900
+
+    #1.67
+
+[33mcommit 5f9d19415307e777ac00b71ed3246fabc087472d[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Wed Mar 18 20:50:44 2020 +0900
+
+    #1.66
+
+[33mcommit 68df416c2669a7b2f68c60ea9cc6651d1356024f[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Wed Mar 18 19:41:24 2020 +0900
+
+    #1.65
+
+[33mcommit a124943e91441634016d4496e869146b4f37bc53[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Wed Mar 18 18:40:34 2020 +0900
+
+    #1.65
+
+[33mcommit 53c95db24c1606c89dd0a494972ef44bd4be120e[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Wed Mar 18 18:23:23 2020 +0900
+
+    #1.63
+
+[33mcommit d11e320004295cc65c5b3a5eeeb7ab0938af66e6[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Tue Mar 17 19:14:39 2020 +0900
+
+    #1.62
+
+[33mcommit df67149c48632d999d1d9214aff157297fa704d9[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Tue Mar 17 18:52:00 2020 +0900
+
+    #1.61
+
+[33mcommit 4ace69150ec535f4125005e6925584810970c024[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Sun Mar 15 23:15:32 2020 +0900
+
+    #1.60
+
+[33mcommit 62e9f0604d87677dd8afa22fd4d9538be52be854[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Sat Mar 14 19:30:59 2020 +0900
+
+    #1.59
+
+[33mcommit 707509aabe9719d257d8574124c32481e65a2ae0[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Fri Mar 13 20:32:45 2020 +0900
+
+    #1.58
+
+[33mcommit 45806b2fd2540298a3a71947ecd885d0f121e0d2[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Fri Mar 13 20:24:08 2020 +0900
+
+    #1.57b
+
+[33mcommit 3af62ae6117bb19dff8346043373a0dc719d17be[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Fri Mar 13 20:15:23 2020 +0900
+
+    #1.57
+
+[33mcommit 9fc2bd73872b61e4f193c6d45e02d1e5cfece633[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Fri Mar 13 19:30:51 2020 +0900
+
+    #1.56
+
+[33mcommit fc5671b53d75e36c07a3cab59b97acbac1d1a038[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Fri Mar 13 19:15:17 2020 +0900
+
+    #1.55
+
+[33mcommit ac55a39943dc7c1d219324ddd759a5d593e4e751[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Thu Mar 12 18:55:29 2020 +0900
+
+    #1.54
+
+[33mcommit b27586a267faa2252193ec00c629b9c441678b75[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Thu Mar 12 18:05:46 2020 +0900
+
+    #1.53
+
+[33mcommit b2d1464b4475dd8b334375228bd4311b4f83df87[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Thu Mar 12 17:22:34 2020 +0900
+
+    #1.52
+
+[33mcommit 497178c8bb539924278ad657dc4a60a616961a3a[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Thu Mar 12 01:02:04 2020 +0900
+
+    #1.52
+
+[33mcommit 8fff8efe85e61ca3ba17ee6a7144b4c86433416d[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Wed Mar 11 23:41:48 2020 +0900
+
+    #1.51
+
+[33mcommit c3fe8d69243703735bbc27cbcd1cdf77ea75a123[m
+Author: junmile <designeryjun@gmail.com>
+Date:   Wed Mar 11 22:55:32 2020 +0900
+
+    #1.50
